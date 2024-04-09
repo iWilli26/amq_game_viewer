@@ -46,7 +46,7 @@ export class TableComponent {
 
 @Component({
   selector: 'details-dialog',
-  templateUrl: 'details-dialog.html',
+  templateUrl: '../details-dialog/details-dialog.component.html',
   standalone: true,
   imports: [MatDialogModule, MatButtonModule],
 })

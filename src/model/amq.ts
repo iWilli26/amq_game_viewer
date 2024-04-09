@@ -7,7 +7,6 @@ export type Amq = {
 export type Song = {
   songNumber: number;
   songInfo: SongInfo;
-  animeTags: string[];
   answer: string;
   correctGuess: number;
   wrongGuess: boolean;

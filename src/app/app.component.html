@@ -360,8 +360,5 @@
 
 <div class="content" role="main">
   <input type="file" (change)="onFileSelected($event)" />
-  <div *ngIf="jsonData">
-    lol
-    <app-table [jsonData]="jsonData"></app-table>
-  </div>
+  <app-table [jsonData]="jsonData"></app-table>
 </div>
