@@ -19,6 +19,7 @@ export type Song = {
 
 export type SongInfo = {
   animeNames: Names;
+  anime: string;
   altAnimeNames: string[];
   altAnimeNamesAnswers: string[];
   artist: string;

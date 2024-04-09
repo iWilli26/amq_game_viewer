@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Amq } from 'src/model/amq';
+import { TableComponent } from './components/table/table.component';
 
 @Component({
   selector: 'app-root',
@@ -22,10 +23,18 @@ export class AppComponent {
     }
     const reader = new FileReader();
     reader.readAsText(file);
-
     reader.onload = () => {
       try {
         this.jsonData = JSON.parse(reader.result as string);
+        this.jsonData.songs = this.jsonData.songs.map((song, index) => {
+          song.songInfo.anime =
+            song.songInfo.animeNames.english !== song.songInfo.animeNames.romaji
+              ? song.songInfo.animeNames.english +
+                '\n' +
+                song.songInfo.animeNames.romaji
+              : song.songInfo.animeNames.english;
+          return song; // Add this line to return the modified song object
+        });
         console.log(this.jsonData.songs);
       } catch (error) {
         console.error('Error parsing JSON file:', error);
