@@ -4,8 +4,10 @@ import { Amq, Song } from 'src/model/amq';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import axios from 'axios';
 import { OnInit } from '@angular/core';
-import { Anime, AnimeThemeResponse } from 'src/model/animeTheme';
+import { Anime, AnimeTheme, AnimeThemeResponse } from 'src/model/animeTheme';
 import { AnilistResponse } from 'src/model/anilist';
+import { from } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-details-dialog',
@@ -27,30 +29,6 @@ export class DetailsDialogComponent implements OnInit {
   };
 
   animeNotFound = false;
-
-  query = `
-  query ($id: Int) { 
-    Media (id: $id, type: ANIME) { 
-      id
-      title {
-        userPreferred
-        english
-        romaji
-      }
-      coverImage {
-        extraLarge
-        large
-        medium
-        color
-      }
-      description
-    }
-  }
-  `;
-
-  variables = {
-    id: this.data.songInfo.siteIds.aniListId,
-  };
 
   anilistFetched: AnilistResponse = {
     id: 0,
@@ -95,13 +73,29 @@ export class DetailsDialogComponent implements OnInit {
 
   clickedAnime: Anime = this.defaultAnime;
 
+  clickedAnimeTheme: AnimeTheme = {
+    id: 0,
+    group: '',
+    sequence: 0,
+    slug: '',
+    type: '',
+    animethemeentries: [],
+    songs: [],
+  };
+
+  //create an async boolean to check if the data has been fetched
+  //if the data has been fetched, then display the data
+  themeLoaded = false;
+
   fetchData = async () => {
     try {
       const responseAnilist = await axios.post(
         'https://graphql.anilist.co',
         JSON.stringify({
-          query: this.query,
-          variables: this.variables,
+          query: query,
+          variables: {
+            id: this.data.songInfo.siteIds.aniListId,
+          },
         }),
         {
           headers: this.headers,
@@ -129,10 +123,22 @@ export class DetailsDialogComponent implements OnInit {
           this.clickedAnime = anime;
         }
       });
+      console.log(this.clickedAnime);
 
       if (this.clickedAnime === this.defaultAnime) {
         this.animeNotFound = true;
       }
+
+      for (let i = 0; i < this.clickedAnime.animethemes.length; i++) {
+        if (
+          this.clickedAnime.animethemes[i].slug === this.data.songInfo.fullType
+        ) {
+          this.clickedAnimeTheme = this.clickedAnime.animethemes[i];
+          break;
+        }
+      }
+      this.themeLoaded = true;
+      console.log(this.clickedAnimeTheme.animethemeentries[0].videos[0].link);
     } catch (error) {
       console.error(error);
     }
@@ -150,3 +156,23 @@ const slugify = (str: String) =>
     .replace(/[\s_-]+/g, '-') // swap any length of whitespace, underscore, hyphen characters with a single -
     .replace(/^-+|-+$/g, '') // remove leading, trailing -
     .replace(/-/g, ''); // replace remaining - with nothing
+
+const query = `
+    query ($id: Int) { 
+      Media (id: $id, type: ANIME) { 
+        id
+        title {
+          userPreferred
+          english
+          romaji
+        }
+        coverImage {
+          extraLarge
+          large
+          medium
+          color
+        }
+        description
+      }
+    }
+    `;

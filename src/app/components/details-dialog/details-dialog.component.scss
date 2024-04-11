@@ -1,0 +1,24 @@
+.modal {
+  display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  flex-direction: column;
+  width: 80vw;
+  height: 80vh;
+}
+
+img {
+  width: 230px;
+  height: 329px;
+  padding: 0.75rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+video {
+  width: 80%;
+  height: auto;
+}

@@ -1,17 +1,28 @@
-<mat-dialog-content class="mat-typography">
-  <p (click)="fetchData()"><b>Anime:</b> {{ data.songInfo.anime }}</p>
-  <p><b>Type:</b> {{ data.songInfo.fullType }}</p>
-  <p><b>Artist:</b> {{ data.songInfo.artist }}</p>
-  <p><b>Song name:</b> {{ data.songInfo.songName }}</p>
-  <p><b>Season:</b> {{ data.songInfo.vintage }}</p>
-  <img
-    *ngIf="animeThemeFetched"
-    [src]="anilistFetched.coverImage.large"
-    alt="Cover image"
-  />
-  <p *ngIf="animeNotFound">
-    <b>Anime not found in AnimeTheme database so no music.</b>
-  </p>
+<mat-dialog-content class="mat-typography modal">
+  <div class="row">
+    <img
+      *ngIf="animeThemeFetched"
+      [src]="anilistFetched.coverImage.large"
+      alt="Cover image"
+    />
+    <div>
+      <h1>{{ data.songInfo.anime }}</h1>
+      <p><b>Song name:</b> {{ data.songInfo.songName }}</p>
+      <p><b>Artist:</b> {{ data.songInfo.artist }}</p>
+      <p><b>Type:</b> {{ data.songInfo.fullType }}</p>
+      <p><b>Season:</b> {{ data.songInfo.vintage }}</p>
+      <p *ngIf="animeNotFound">
+        <b>Anime not found in AnimeTheme database so no music.</b>
+      </p>
+    </div>
+  </div>
+  <div *ngIf="themeLoaded">
+    <video controls>
+      <source
+        [src]="this.clickedAnimeTheme.animethemeentries[0].videos[0].link"
+      />
+    </video>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
