@@ -10,6 +10,7 @@ import {
   MatDialogConfig,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { DetailsDialogComponent } from '../details-dialog/details-dialog.component';
 
 @Component({
   selector: 'app-table',
@@ -26,6 +27,7 @@ export class TableComponent {
   };
   displayedColumns: string[] = [
     'songNumber',
+    'fullType',
     'artist',
     'songName',
     'anime',
@@ -35,21 +37,10 @@ export class TableComponent {
   //i want row to be of type Song
 
   showDetails = (row: MatDialogConfig<Song>) => {
-    const dialogRef = this.dialog.open(DialogDetails, { data: row });
+    const dialogRef = this.dialog.open(DetailsDialogComponent, { data: row });
 
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(`Dialog result: ${result}`);
-    });
-    console.log(row);
+    // dialogRef.afterClosed().subscribe((result: any) => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
   };
-}
-
-@Component({
-  selector: 'details-dialog',
-  templateUrl: '../details-dialog/details-dialog.component.html',
-  standalone: true,
-  imports: [MatDialogModule, MatButtonModule],
-})
-export class DialogDetails {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Song) {}
 }

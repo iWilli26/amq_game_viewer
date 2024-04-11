@@ -33,9 +33,15 @@ export class AppComponent {
                 '\n' +
                 song.songInfo.animeNames.romaji
               : song.songInfo.animeNames.english;
+          song.songInfo.fullType =
+            song.songInfo.type === 1
+              ? 'OP' + song.songInfo.typeNumber
+              : song.songInfo.type === 2
+              ? 'ED' + song.songInfo.typeNumber
+              : 'Insert';
+
           return song; // Add this line to return the modified song object
         });
-        console.log(this.jsonData.songs);
       } catch (error) {
         console.error('Error parsing JSON file:', error);
       }

@@ -1,0 +1,304 @@
+{
+  "search": {
+    "anime": [
+      {
+        "id": 1187,
+        "name": "Horimiya",
+        "media_format": "TV",
+        "season": "Winter",
+        "slug": "horimiya",
+        "synopsis": "A secret life is the one thing they have in common. At school, Hori is a prim and perfect social butterfly, but the truth is she's a brash homebody. Meanwhile, under a gloomy facade, Miyamura hides a gentle heart, along with piercings and tattoos. In a chance meeting, they both reveal a side they've never shown. Could this blossom into something new?<br>\n<br>\n(Source: Funimation)",
+        "year": 2021,
+        "animethemes": [
+          {
+            "id": 9740,
+            "group": null,
+            "sequence": null,
+            "slug": "OP1",
+            "type": "OP",
+            "animethemeentries": [
+              {
+                "id": 11440,
+                "episodes": "1-6",
+                "notes": "",
+                "nsfw": false,
+                "spoiler": false,
+                "version": 1,
+                "videos": [
+                  {
+                    "id": 12147,
+                    "basename": "Horimiya-OP1.webm",
+                    "filename": "Horimiya-OP1",
+                    "lyrics": false,
+                    "nc": false,
+                    "overlap": "None",
+                    "path": "2021/Winter/Horimiya-OP1.webm",
+                    "resolution": 720,
+                    "size": 49438982,
+                    "source": "WEB",
+                    "subbed": false,
+                    "uncen": false,
+                    "tags": "",
+                    "link": "https://v.animethemes.moe/Horimiya-OP1.webm"
+                  },
+                  {
+                    "id": 14480,
+                    "basename": "Horimiya-OP1-BD1080.webm",
+                    "filename": "Horimiya-OP1-BD1080",
+                    "lyrics": false,
+                    "nc": false,
+                    "overlap": "None",
+                    "path": "2021/Winter/Horimiya-OP1-BD1080.webm",
+                    "resolution": 1080,
+                    "size": 70509870,
+                    "source": "BD",
+                    "subbed": false,
+                    "uncen": false,
+                    "tags": "BD1080",
+                    "link": "https://v.animethemes.moe/Horimiya-OP1-BD1080.webm"
+                  }
+                ]
+              },
+              {
+                "id": 11441,
+                "episodes": "7-13",
+                "notes": "",
+                "nsfw": false,
+                "spoiler": false,
+                "version": 2,
+                "videos": [
+                  {
+                    "id": 12148,
+                    "basename": "Horimiya-OP1v2.webm",
+                    "filename": "Horimiya-OP1v2",
+                    "lyrics": false,
+                    "nc": false,
+                    "overlap": "None",
+                    "path": "2021/Winter/Horimiya-OP1v2.webm",
+                    "resolution": 720,
+                    "size": 51740144,
+                    "source": "WEB",
+                    "subbed": false,
+                    "uncen": false,
+                    "tags": "",
+                    "link": "https://v.animethemes.moe/Horimiya-OP1v2.webm"
+                  },
+                  {
+                    "id": 14481,
+                    "basename": "Horimiya-OP1v2-BD1080.webm",
+                    "filename": "Horimiya-OP1v2-BD1080",
+                    "lyrics": false,
+                    "nc": false,
+                    "overlap": "None",
+                    "path": "2021/Winter/Horimiya-OP1v2-BD1080.webm",
+                    "resolution": 1080,
+                    "size": 71739904,
+                    "source": "BD",
+                    "subbed": false,
+                    "uncen": false,
+                    "tags": "BD1080",
+                    "link": "https://v.animethemes.moe/Horimiya-OP1v2-BD1080.webm"
+                  }
+                ]
+              }
+            ],
+            "song": {
+              "id": 9741,
+              "title": "Iro Kousui"
+            }
+          },
+          {
+            "id": 9741,
+            "group": null,
+            "sequence": null,
+            "slug": "ED1",
+            "type": "ED",
+            "animethemeentries": [
+              {
+                "id": 11442,
+                "episodes": "1-13",
+                "notes": "",
+                "nsfw": false,
+                "spoiler": false,
+                "version": null,
+                "videos": [
+                  {
+                    "id": 12145,
+                    "basename": "Horimiya-ED1-NCBD1080.webm",
+                    "filename": "Horimiya-ED1-NCBD1080",
+                    "lyrics": false,
+                    "nc": true,
+                    "overlap": "None",
+                    "path": "2021/Winter/Horimiya-ED1-NCBD1080.webm",
+                    "resolution": 1080,
+                    "size": 33981361,
+                    "source": "BD",
+                    "subbed": false,
+                    "uncen": false,
+                    "tags": "NCBD1080",
+                    "link": "https://v.animethemes.moe/Horimiya-ED1-NCBD1080.webm"
+                  },
+                  {
+                    "id": 12146,
+                    "basename": "Horimiya-ED1.webm",
+                    "filename": "Horimiya-ED1",
+                    "lyrics": false,
+                    "nc": false,
+                    "overlap": "None",
+                    "path": "2021/Winter/Horimiya-ED1.webm",
+                    "resolution": 720,
+                    "size": 33162267,
+                    "source": "WEB",
+                    "subbed": false,
+                    "uncen": false,
+                    "tags": "",
+                    "link": "https://v.animethemes.moe/Horimiya-ED1.webm"
+                  }
+                ]
+              }
+            ],
+            "song": {
+              "id": 9742,
+              "title": "Yakusoku"
+            }
+          }
+        ]
+      },
+      {
+        "id": 4083,
+        "name": "Horimiya: Piece",
+        "media_format": "TV",
+        "season": "Summer",
+        "slug": "horimiya_piece",
+        "synopsis": "A new anime project adapting popular side stories that were left out from the previous adaptation.",
+        "year": 2023,
+        "animethemes": [
+          {
+            "id": 12345,
+            "group": null,
+            "sequence": null,
+            "slug": "OP1",
+            "type": "OP",
+            "animethemeentries": [
+              {
+                "id": 14446,
+                "episodes": "1-13",
+                "notes": null,
+                "nsfw": false,
+                "spoiler": false,
+                "version": null,
+                "videos": [
+                  {
+                    "id": 17001,
+                    "basename": "HorimiyaPiece-OP1.webm",
+                    "filename": "HorimiyaPiece-OP1",
+                    "lyrics": false,
+                    "nc": false,
+                    "overlap": "None",
+                    "path": "2023/Summer/HorimiyaPiece-OP1.webm",
+                    "resolution": 720,
+                    "size": 48063017,
+                    "source": "WEB",
+                    "subbed": false,
+                    "uncen": false,
+                    "tags": "",
+                    "link": "https://v.animethemes.moe/HorimiyaPiece-OP1.webm"
+                  }
+                ]
+              }
+            ],
+            "song": {
+              "id": 12313,
+              "title": "Shiawase"
+            }
+          },
+          {
+            "id": 12346,
+            "group": null,
+            "sequence": 1,
+            "slug": "ED1",
+            "type": "ED",
+            "animethemeentries": [
+              {
+                "id": 14447,
+                "episodes": "1-6, 8-13",
+                "notes": null,
+                "nsfw": false,
+                "spoiler": false,
+                "version": null,
+                "videos": [
+                  {
+                    "id": 17002,
+                    "basename": "HorimiyaPiece-ED1.webm",
+                    "filename": "HorimiyaPiece-ED1",
+                    "lyrics": false,
+                    "nc": false,
+                    "overlap": "None",
+                    "path": "2023/Summer/HorimiyaPiece-ED1.webm",
+                    "resolution": 720,
+                    "size": 26320879,
+                    "source": "WEB",
+                    "subbed": false,
+                    "uncen": false,
+                    "tags": "",
+                    "link": "https://v.animethemes.moe/HorimiyaPiece-ED1.webm"
+                  }
+                ]
+              }
+            ],
+            "song": {
+              "id": 12314,
+              "title": "URL"
+            }
+          },
+          {
+            "id": 12451,
+            "group": null,
+            "sequence": 2,
+            "slug": "ED2",
+            "type": "ED",
+            "animethemeentries": [
+              {
+                "id": 14559,
+                "episodes": "7",
+                "notes": null,
+                "nsfw": false,
+                "spoiler": false,
+                "version": null,
+                "videos": [
+                  {
+                    "id": 17112,
+                    "basename": "HorimiyaPiece-ED2.webm",
+                    "filename": "HorimiyaPiece-ED2",
+                    "lyrics": false,
+                    "nc": false,
+                    "overlap": "None",
+                    "path": "2023/Summer/HorimiyaPiece-ED2.webm",
+                    "resolution": 720,
+                    "size": 32227869,
+                    "source": "WEB",
+                    "subbed": false,
+                    "uncen": false,
+                    "tags": "",
+                    "link": "https://v.animethemes.moe/HorimiyaPiece-ED2.webm"
+                  }
+                ]
+              }
+            ],
+            "song": {
+              "id": 12413,
+              "title": "Dokuro Ninja Konoha"
+            }
+          }
+        ]
+      }
+    ],
+    "series": [
+      {
+        "id": 281,
+        "name": "Horimiya",
+        "slug": "horimiya"
+      }
+    ]
+  }
+}
