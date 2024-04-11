@@ -34,8 +34,6 @@ export class TableComponent {
     'vintage',
   ];
 
-  //i want row to be of type Song
-
   showDetails = (row: MatDialogConfig<Song>) => {
     const dialogRef = this.dialog.open(DetailsDialogComponent, { data: row });
 

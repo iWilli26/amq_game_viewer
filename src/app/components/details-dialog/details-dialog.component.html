@@ -1,8 +1,14 @@
 <mat-dialog-content class="mat-typography">
   <p (click)="fetchData()"><b>Anime:</b> {{ data.songInfo.anime }}</p>
+  <p><b>Type:</b> {{ data.songInfo.fullType }}</p>
   <p><b>Artist:</b> {{ data.songInfo.artist }}</p>
   <p><b>Song name:</b> {{ data.songInfo.songName }}</p>
   <p><b>Season:</b> {{ data.songInfo.vintage }}</p>
+  <img
+    *ngIf="fetchedData"
+    [src]="fetchedData.search.animethemes[0].anime.images[0].link"
+    alt="Cover image"
+  />
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>

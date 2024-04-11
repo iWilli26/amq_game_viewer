@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Amq } from 'src/model/amq';
-import { TableComponent } from './components/table/table.component';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +15,6 @@ export class AppComponent {
   };
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
-    console.log(file);
     if (file.type !== 'application/json') {
       console.error('Error: File type must be JSON');
       return;
@@ -40,7 +38,7 @@ export class AppComponent {
               ? 'ED' + song.songInfo.typeNumber
               : 'Insert';
 
-          return song; // Add this line to return the modified song object
+          return song;
         });
       } catch (error) {
         console.error('Error parsing JSON file:', error);

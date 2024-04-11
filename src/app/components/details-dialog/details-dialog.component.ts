@@ -1,16 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { Amq, Song } from 'src/model/amq';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogTitle,
-  MatDialogContent,
-  MatDialogModule,
-  MatDialogConfig,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import axios from 'axios';
 import { OnInit } from '@angular/core';
+import { AnimeThemeResponse } from 'src/model/animeTheme';
 
 @Component({
   selector: 'app-details-dialog',
@@ -48,7 +42,11 @@ export class DetailsDialogComponent implements OnInit {
     this.data.songInfo.fullType
   }&include[anime]=animethemes.animethemeentries.videos,animethemes.song,images&include[animetheme]=animethemeentries.videos,anime.images,song.artists&include[artist]=images,songs&fields[anime]=name,slug,year,season&fields[animetheme]=type,sequence,slug,group,id&fields[animethemeentry]=version,episodes,spoiler,nsfw&fields[video]=id,tags,resolution,nc,subbed,lyrics,uncen,source,overlap,basename&fields[image]=facet,link&fields[song]=id,title&fields[artist]=name,slug&fields[series]=name,slug`;
 
-  fetchedData: any = {};
+  fetchedData: AnimeThemeResponse = {
+    search: {
+      animethemes: [],
+    },
+  };
 
   headers = {
     'Content-Type': 'application/json',
@@ -57,18 +55,19 @@ export class DetailsDialogComponent implements OnInit {
 
   fetchData = async () => {
     try {
-      const response = await axios.post(
-        'https://graphql.anilist.co',
-        JSON.stringify({
-          query: this.query,
-          variables: this.variables,
-        }),
-        {
-          headers: this.headers,
-        }
-      );
-      this.fetchedData = response.data.data.Media;
-      console.log(this.fetchedData);
+      // const response = await axios.post(
+      //   'https://graphql.anilist.co',
+      //   JSON.stringify({
+      //     query: this.query,
+      //     variables: this.variables,
+      //   }),
+      //   {
+      //     headers: this.headers,
+      //   }
+      // );
+      const response = await axios.get(this.animeThemeURL);
+      this.fetchedData = response.data;
+      console.log(this.fetchedData.search);
     } catch (error) {
       console.error(error);
     }
