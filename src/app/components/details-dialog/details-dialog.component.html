@@ -5,10 +5,13 @@
   <p><b>Song name:</b> {{ data.songInfo.songName }}</p>
   <p><b>Season:</b> {{ data.songInfo.vintage }}</p>
   <img
-    *ngIf="fetchedData"
-    [src]="fetchedData.search.animethemes[0].anime.images[0].link"
+    *ngIf="animeThemeFetched"
+    [src]="anilistFetched.coverImage.large"
     alt="Cover image"
   />
+  <p *ngIf="animeNotFound">
+    <b>Anime not found in AnimeTheme database so no music.</b>
+  </p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>

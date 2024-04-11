@@ -1,50 +1,81 @@
+// export interface AnimeThemeResponse {
+//   search: { animethemes: AnimeTheme[] };
+// }
+
 export interface AnimeThemeResponse {
-  search: { animethemes: AnimeTheme[] };
+  anime: Anime[];
+  links: {
+    first: String;
+    last: String;
+    prev: String;
+    next: String;
+  };
+  meta: {
+    current_page: Number;
+    from: Number;
+    last_page: Number;
+    path: String;
+    per_page: Number;
+    to: Number;
+    total: Number;
+    links: {
+      url: String;
+      label: String;
+      active: Boolean;
+    }[];
+  };
+}
+
+export interface Anime {
+  id: Number;
+  name: String;
+  media_format: String;
+  season: String;
+  slug: String;
+  synopsis: String;
+  year: Number;
+  animethemes: AnimeTheme[];
 }
 
 export interface AnimeTheme {
   id: Number;
   group: String;
+  sequence: Number;
   slug: String;
   type: String;
-  sequence: Number;
-  anime: Anime;
-  entries: AnimeThemeEntry[];
+  animethemeentries: AnimeThemeEntry[];
   songs: ThemeSong[];
 }
-
-export interface Anime {
-  name: String;
-  slug: String;
-  year: Number;
-  season: String;
-  images: Image[];
-}
-
 export interface Image {
   facet: String;
   link: String;
 }
 
 export interface AnimeThemeEntry {
-  version: Number;
+  id: Number;
+  notes: String;
   episodes: Number;
-  spoiler: Boolean;
   nsfw: Boolean;
+  spoiler: Boolean;
+  version: Number;
   videos: Video[];
 }
 
 export interface Video {
   id: Number;
-  tags: String;
-  resolution: Number;
-  nc: Boolean;
-  subbed: Boolean;
-  lyrics: Boolean;
-  uncen: Boolean;
-  source: String;
-  overlap: Boolean;
   basename: String;
+  filename: String;
+  lyrics: Boolean;
+  nc: Boolean;
+  overlap: String;
+  path: String;
+  resolution: Number;
+  size: Number;
+  source: String;
+  subbed: Boolean;
+  uncen: Boolean;
+  tags: String;
+  link: String;
 }
 
 export interface ThemeSong {

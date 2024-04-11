@@ -4,7 +4,8 @@ import { Amq, Song } from 'src/model/amq';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import axios from 'axios';
 import { OnInit } from '@angular/core';
-import { AnimeThemeResponse } from 'src/model/animeTheme';
+import { Anime, AnimeThemeResponse } from 'src/model/animeTheme';
+import { AnilistResponse } from 'src/model/anilist';
 
 @Component({
   selector: 'app-details-dialog',
@@ -14,12 +15,27 @@ import { AnimeThemeResponse } from 'src/model/animeTheme';
 export class DetailsDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Song) {}
 
+  defaultAnime: Anime = {
+    id: 0,
+    name: '',
+    media_format: '',
+    season: '',
+    slug: '',
+    synopsis: '',
+    year: 0,
+    animethemes: [],
+  };
+
+  animeNotFound = false;
+
   query = `
   query ($id: Int) { 
     Media (id: $id, type: ANIME) { 
       id
       title {
         userPreferred
+        english
+        romaji
       }
       coverImage {
         extraLarge
@@ -36,15 +52,39 @@ export class DetailsDialogComponent implements OnInit {
     id: this.data.songInfo.siteIds.aniListId,
   };
 
-  animeThemeURL = `https://api.animethemes.moe/search?page[limit]=4&fields[search]=animethemes&q=${
-    this.data.songInfo.animeNames.english.replaceAll(' ', '+') +
-    '+' +
-    this.data.songInfo.fullType
-  }&include[anime]=animethemes.animethemeentries.videos,animethemes.song,images&include[animetheme]=animethemeentries.videos,anime.images,song.artists&include[artist]=images,songs&fields[anime]=name,slug,year,season&fields[animetheme]=type,sequence,slug,group,id&fields[animethemeentry]=version,episodes,spoiler,nsfw&fields[video]=id,tags,resolution,nc,subbed,lyrics,uncen,source,overlap,basename&fields[image]=facet,link&fields[song]=id,title&fields[artist]=name,slug&fields[series]=name,slug`;
+  anilistFetched: AnilistResponse = {
+    id: 0,
+    title: {
+      userPreferred: '',
+      english: '',
+      romaji: '',
+    },
+    coverImage: {
+      extraLarge: '',
+      large: '',
+      medium: '',
+      color: '',
+    },
+    description: '',
+  };
 
-  fetchedData: AnimeThemeResponse = {
-    search: {
-      animethemes: [],
+  animeThemeFetched: AnimeThemeResponse = {
+    anime: [],
+    links: {
+      first: '',
+      last: '',
+      prev: '',
+      next: '',
+    },
+    meta: {
+      current_page: 0,
+      from: 0,
+      last_page: 0,
+      path: '',
+      per_page: 0,
+      to: 0,
+      total: 0,
+      links: [],
     },
   };
 
@@ -53,21 +93,46 @@ export class DetailsDialogComponent implements OnInit {
     Accept: 'application/json',
   };
 
+  clickedAnime: Anime = this.defaultAnime;
+
   fetchData = async () => {
     try {
-      // const response = await axios.post(
-      //   'https://graphql.anilist.co',
-      //   JSON.stringify({
-      //     query: this.query,
-      //     variables: this.variables,
-      //   }),
-      //   {
-      //     headers: this.headers,
-      //   }
-      // );
-      const response = await axios.get(this.animeThemeURL);
-      this.fetchedData = response.data;
-      console.log(this.fetchedData.search);
+      const responseAnilist = await axios.post(
+        'https://graphql.anilist.co',
+        JSON.stringify({
+          query: this.query,
+          variables: this.variables,
+        }),
+        {
+          headers: this.headers,
+        }
+      );
+      this.anilistFetched = responseAnilist.data.data.Media;
+
+      const otherURL =
+        'https://api.animethemes.moe/anime?page[size]=15&page[number]=1&q=' +
+        this.anilistFetched.title.userPreferred.replaceAll(' ', '+') +
+        '&include=animethemes.animethemeentries.videos,animethemes.song';
+
+      const responseAnimeTheme = await axios.get(otherURL);
+      this.animeThemeFetched = responseAnimeTheme.data;
+
+      this.animeThemeFetched.anime.forEach((anime) => {
+        if (
+          slugify(anime.name.toLowerCase()) ===
+            slugify(this.anilistFetched.title.userPreferred) ||
+          slugify(anime.name.toLowerCase()) ===
+            slugify(this.anilistFetched.title.english) ||
+          slugify(anime.name.toLowerCase()) ===
+            slugify(this.anilistFetched.title.romaji)
+        ) {
+          this.clickedAnime = anime;
+        }
+      });
+
+      if (this.clickedAnime === this.defaultAnime) {
+        this.animeNotFound = true;
+      }
     } catch (error) {
       console.error(error);
     }
@@ -75,6 +140,13 @@ export class DetailsDialogComponent implements OnInit {
 
   ngOnInit() {
     this.fetchData();
-    console.log(this.animeThemeURL);
   }
 }
+const slugify = (str: String) =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '') // remove non-word [a-z0-9_], non-whitespace, non-hyphen characters
+    .replace(/[\s_-]+/g, '-') // swap any length of whitespace, underscore, hyphen characters with a single -
+    .replace(/^-+|-+$/g, '') // remove leading, trailing -
+    .replace(/-/g, ''); // replace remaining - with nothing
