@@ -359,6 +359,9 @@
 </div>
 
 <div class="content" role="main">
-  <input type="file" (change)="onFileSelected($event)" />
+  <input class="input" type="file" (change)="onFileSelected($event)" />
   <app-table [jsonData]="jsonData"></app-table>
 </div>
+<div class="footer"></div>
+
+<app-player></app-player>

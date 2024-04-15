@@ -14,10 +14,25 @@
       <p *ngIf="animeNotFound">
         <b>Anime not found in AnimeTheme database so no music.</b>
       </p>
+      <button (click)="play()" class="button">stop start</button>
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value="100"
+        class="slider"
+        id="myRange"
+        (input)="changeVolume($event)"
+      />
     </div>
   </div>
-  <div *ngIf="themeLoaded">
+  <div *ngIf="this.data.videoUrl">
     <video controls>
+      <source [src]="this.data.videoUrl" />
+    </video>
+  </div>
+  <div *ngIf="this.themeLoaded">
+    <video id="video" (loadedmetadata)="onVideoLoaded()" controls>
       <source
         [src]="this.clickedAnimeTheme.animethemeentries[0].videos[0].link"
       />

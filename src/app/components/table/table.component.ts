@@ -10,7 +10,9 @@ import {
   MatDialogConfig,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { SongService } from 'src/app/service/song/song.service';
 import { DetailsDialogComponent } from '../details-dialog/details-dialog.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -18,7 +20,13 @@ import { DetailsDialogComponent } from '../details-dialog/details-dialog.compone
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent {
-  constructor(public dialog: MatDialog) {}
+  currentSong: Song | null = null;
+  subscription: Subscription;
+  constructor(public dialog: MatDialog, private songService: SongService) {
+    this.subscription = this.songService.currentSong$.subscribe((song) => {
+      this.currentSong = song;
+    });
+  }
 
   @Input() jsonData: Amq = {
     roomName: '',
@@ -34,11 +42,11 @@ export class TableComponent {
     'vintage',
   ];
 
-  showDetails = (row: MatDialogConfig<Song>) => {
-    const dialogRef = this.dialog.open(DetailsDialogComponent, { data: row });
-
-    // dialogRef.afterClosed().subscribe((result: any) => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
+  setSong = (row: Song) => {
+    this.songService.setSong(row);
   };
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

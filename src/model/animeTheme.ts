@@ -1,7 +1,3 @@
-// export interface AnimeThemeResponse {
-//   search: { animethemes: AnimeTheme[] };
-// }
-
 export interface AnimeThemeResponse {
   anime: Anime[];
   links: {

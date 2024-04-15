@@ -123,7 +123,6 @@ export class DetailsDialogComponent implements OnInit {
           this.clickedAnime = anime;
         }
       });
-      console.log(this.clickedAnime);
 
       if (this.clickedAnime === this.defaultAnime) {
         this.animeNotFound = true;
@@ -134,11 +133,10 @@ export class DetailsDialogComponent implements OnInit {
           this.clickedAnime.animethemes[i].slug === this.data.songInfo.fullType
         ) {
           this.clickedAnimeTheme = this.clickedAnime.animethemes[i];
+          this.themeLoaded = true;
           break;
         }
       }
-      this.themeLoaded = true;
-      console.log(this.clickedAnimeTheme.animethemeentries[0].videos[0].link);
     } catch (error) {
       console.error(error);
     }
@@ -147,7 +145,24 @@ export class DetailsDialogComponent implements OnInit {
   ngOnInit() {
     this.fetchData();
   }
+
+  onVideoLoaded(): void {
+    console.log('Video loaded');
+    this.play();
+  }
+
+  play = () => {
+    const video = document.getElementById('video') as HTMLVideoElement;
+    video.paused ? video.play() : video.pause();
+  };
+
+  changeVolume = (event: Event) => {
+    const video = document.getElementById('video') as HTMLVideoElement;
+    const volume = (event.target as HTMLInputElement).value;
+    video.volume = parseFloat(volume) / 100;
+  };
 }
+
 const slugify = (str: String) =>
   str
     .toLowerCase()
