@@ -1,4 +1,7 @@
 <div class="footer">
   <p>player works!</p>
-  <button (click)="test()">test</button>
+
+  <video *ngIf="this.themeLoaded" id="videoPlayer" controls>
+    <source [src]="this.currentSong?.videoUrl" />
+  </video>
 </div>

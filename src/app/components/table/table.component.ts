@@ -24,6 +24,9 @@ export class TableComponent {
   subscription: Subscription;
   constructor(public dialog: MatDialog, private songService: SongService) {
     this.subscription = this.songService.currentSong$.subscribe((song) => {
+      if (!song) {
+        return;
+      }
       this.currentSong = song;
     });
   }

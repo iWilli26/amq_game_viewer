@@ -22,6 +22,26 @@ export interface AnimeThemeResponse {
   };
 }
 
+export const emptyAnimeThemeResponse: AnimeThemeResponse = {
+  anime: [],
+  links: {
+    first: '',
+    last: '',
+    prev: '',
+    next: '',
+  },
+  meta: {
+    current_page: 0,
+    from: 0,
+    last_page: 0,
+    path: '',
+    per_page: 0,
+    to: 0,
+    total: 0,
+    links: [],
+  },
+};
+
 export interface Anime {
   id: Number;
   name: String;
@@ -33,6 +53,17 @@ export interface Anime {
   animethemes: AnimeTheme[];
 }
 
+export const emptyAnime: Anime = {
+  id: 0,
+  name: '',
+  media_format: '',
+  season: '',
+  slug: '',
+  synopsis: '',
+  year: 0,
+  animethemes: [],
+};
+
 export interface AnimeTheme {
   id: Number;
   group: String;
@@ -42,6 +73,17 @@ export interface AnimeTheme {
   animethemeentries: AnimeThemeEntry[];
   songs: ThemeSong[];
 }
+
+export const emptyAnimeTheme: AnimeTheme = {
+  id: 0,
+  group: '',
+  sequence: 0,
+  slug: '',
+  type: '',
+  animethemeentries: [],
+  songs: [],
+};
+
 export interface Image {
   facet: String;
   link: String;

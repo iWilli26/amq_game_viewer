@@ -19,6 +19,39 @@ export type Song = {
   listStates: { name: string; status: number; score: number }[] | null;
 };
 
+export const emptySong: Song = {
+  songNumber: 0,
+  songInfo: {
+    fullType: '',
+    animeNames: { english: '', romaji: '' },
+    anime: '',
+    altAnimeNames: [],
+    altAnimeNamesAnswers: [],
+    artist: '',
+    songName: '',
+    type: 0,
+    typeNumber: 0,
+    annId: 0,
+    animeScore: 0,
+    animeType: '',
+    vintage: '',
+    animeDifficulty: 0,
+    siteIds: { aniListId: 0, malId: 0, annId: 0, kitsuId: 0 },
+    animeTags: [],
+    animeGenre: [],
+  },
+  answer: '',
+  correctGuess: 0,
+  wrongGuess: false,
+  correctCount: 0,
+  wrongCount: 0,
+  startPoint: 0,
+  videoLength: 0,
+  videoUrl: '',
+  correctGuessPlayers: [],
+  listStates: [],
+};
+
 export type SongInfo = {
   fullType: string;
   animeNames: Names;
