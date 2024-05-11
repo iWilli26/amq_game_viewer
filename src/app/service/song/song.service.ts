@@ -23,6 +23,5 @@ export class SongService {
 
   setSong(song: Song): void {
     this.currentSong.next(song);
-    console.log(song);
   }
 }

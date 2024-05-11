@@ -14,7 +14,7 @@ export type Song = {
   wrongCount: number;
   startPoint: number;
   videoLength: number;
-  videoUrl: string | null;
+  videoUrl: string;
   correctGuessPlayers: string[] | null;
   listStates: { name: string; status: number; score: number }[] | null;
 };

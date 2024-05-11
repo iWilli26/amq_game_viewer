@@ -6,6 +6,7 @@ import { TableComponent } from './components/table/table.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DetailsDialogComponent } from './components/details-dialog/details-dialog.component';
 import { PlayerComponent } from './components/player/player.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,12 @@ import { PlayerComponent } from './components/player/player.component';
     DetailsDialogComponent,
     PlayerComponent,
   ],
-  imports: [BrowserModule, MatTableModule, MatDialogModule],
+  imports: [
+    BrowserModule,
+    MatTableModule,
+    MatDialogModule,
+    MatProgressBarModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
